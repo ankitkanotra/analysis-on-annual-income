@@ -1,0 +1,425 @@
+import pandas as pd
+df=pd.read_csv( 'C:\Users\krg\Anaconda3\Mall_Customers.csv') df
+
+import pandas as pd
+df=pd.read_csv(r'C:\Users\krg\Anaconda3\Mall_Customers.csv') 
+df
+CustomerID	Gender	Age	Annual Income (k$)	Spending Score (1-100)
+0	1	Male	19	15	39
+1	2	Male	21	15	81
+2	3	Female	20	16	6
+3	4	Female	23	16	77
+4	5	Female	31	17	40
+5	6	Female	22	17	76
+6	7	Female	35	18	6
+7	8	Female	23	18	94
+8	9	Male	64	19	3
+9	10	Female	30	19	72
+10	11	Male	67	19	14
+11	12	Female	35	19	99
+12	13	Female	58	20	15
+13	14	Female	24	20	77
+14	15	Male	37	20	13
+15	16	Male	22	20	79
+16	17	Female	35	21	35
+17	18	Male	20	21	66
+18	19	Male	52	23	29
+19	20	Female	35	23	98
+20	21	Male	35	24	35
+21	22	Male	25	24	73
+22	23	Female	46	25	5
+23	24	Male	31	25	73
+24	25	Female	54	28	14
+25	26	Male	29	28	82
+26	27	Female	45	28	32
+27	28	Male	35	28	61
+28	29	Female	40	29	31
+29	30	Female	23	29	87
+...	...	...	...	...	...
+170	171	Male	40	87	13
+171	172	Male	28	87	75
+172	173	Male	36	87	10
+173	174	Male	36	87	92
+174	175	Female	52	88	13
+175	176	Female	30	88	86
+176	177	Male	58	88	15
+177	178	Male	27	88	69
+178	179	Male	59	93	14
+179	180	Male	35	93	90
+180	181	Female	37	97	32
+181	182	Female	32	97	86
+182	183	Male	46	98	15
+183	184	Female	29	98	88
+184	185	Female	41	99	39
+185	186	Male	30	99	97
+186	187	Female	54	101	24
+187	188	Male	28	101	68
+188	189	Female	41	103	17
+189	190	Female	36	103	85
+190	191	Female	34	103	23
+191	192	Female	32	103	69
+192	193	Male	33	113	8
+193	194	Female	38	113	91
+194	195	Female	47	120	16
+195	196	Female	35	120	79
+196	197	Female	45	126	28
+197	198	Male	32	126	74
+198	199	Male	32	137	18
+199	200	Male	30	137	83
+200 rows × 5 columns
+
+df['Spending Score (1-100)'].mean()
+50.2
+ df['Annual Income (k$)'].max()
+137
+df['Annual Income (k$)'].mean()
+60.56
+df.count()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+CustomerID                200
+Gender                    200
+Age                       200
+Annual Income (k$)        200
+Spending Score (1-100)    200
+dtype: int64
+df1 = df.groupby(['Gender']).size().reset_index(name='count')
+df1
+Gender	count
+0	Female	112
+1	Male	88
+means = df.groupby('Gender').mean()
+means
+CustomerID	Age	Annual Income (k$)	Spending Score (1-100)
+Gender				
+Female	97.562500	38.098214	59.250000	51.526786
+Male	104.238636	39.806818	62.227273	48.511364
+ df['Annual Income (k$)'].mean()
+60.56
+df['Annual Income (k$)'].min()
+15
+df.count()
+df.count(axis='columns')
+df1 = df[df['Annual Income (k$)'] > 48.2] 
+df1
+CustomerID	Gender	Age	Annual Income (k$)	Spending Score (1-100)
+70	71	Male	70	49	55
+71	72	Female	47	49	42
+72	73	Female	60	50	49
+73	74	Female	60	50	56
+74	75	Male	59	54	47
+75	76	Male	26	54	54
+76	77	Female	45	54	53
+77	78	Male	40	54	48
+78	79	Female	23	54	52
+79	80	Female	49	54	42
+80	81	Male	57	54	51
+81	82	Male	38	54	55
+82	83	Male	67	54	41
+83	84	Female	46	54	44
+84	85	Female	21	54	57
+85	86	Male	48	54	46
+86	87	Female	55	57	58
+87	88	Female	22	57	55
+88	89	Female	34	58	60
+89	90	Female	50	58	46
+90	91	Female	68	59	55
+91	92	Male	18	59	41
+92	93	Male	48	60	49
+93	94	Female	40	60	40
+94	95	Female	32	60	42
+95	96	Male	24	60	52
+96	97	Female	47	60	47
+97	98	Female	27	60	50
+98	99	Male	48	61	42
+99	100	Male	20	61	49
+...	...	...	...	...	...
+170	171	Male	40	87	13
+171	172	Male	28	87	75
+172	173	Male	36	87	10
+173	174	Male	36	87	92
+174	175	Female	52	88	13
+175	176	Female	30	88	86
+176	177	Male	58	88	15
+177	178	Male	27	88	69
+178	179	Male	59	93	14
+179	180	Male	35	93	90
+180	181	Female	37	97	32
+181	182	Female	32	97	86
+182	183	Male	46	98	15
+183	184	Female	29	98	88
+184	185	Female	41	99	39
+185	186	Male	30	99	97
+186	187	Female	54	101	24
+187	188	Male	28	101	68
+188	189	Female	41	103	17
+189	190	Female	36	103	85
+190	191	Female	34	103	23
+191	192	Female	32	103	69
+192	193	Male	33	113	8
+193	194	Female	38	113	91
+194	195	Female	47	120	16
+195	196	Female	35	120	79
+196	197	Female	45	126	28
+197	198	Male	32	126	74
+198	199	Male	32	137	18
+199	200	Male	30	137	83
+130 rows × 5 columns
+
+df2 = df1.groupby(['Gender']).size().reset_index(name='count')
+df2
+Gender	count
+0	Female	70
+1	Male	60
+df.loc[[2,0]]
+CustomerID	Gender	Age	Annual Income (k$)	Spending Score (1-100)
+2	3	Female	20	16	6
+0	1	Male	19	15	39
+df3femal =df.loc[(df['Gender']=='Female') & (df['Annual Income (k$)'] < 59.69),['Age','Annual Income (k$)']]
+df3femal
+Age	Annual Income (k$)
+2	20	16
+3	23	16
+4	31	17
+5	22	17
+6	35	18
+7	23	18
+9	30	19
+11	35	19
+12	58	20
+13	24	20
+16	35	21
+19	35	23
+22	46	25
+24	54	28
+26	45	28
+28	40	29
+29	23	29
+31	21	30
+34	49	33
+35	21	33
+36	42	34
+37	30	34
+38	36	37
+39	20	37
+40	65	38
+43	31	39
+44	49	39
+45	24	39
+46	50	40
+47	27	40
+48	29	40
+49	31	40
+50	49	42
+52	31	43
+54	50	43
+56	51	44
+58	27	46
+62	67	47
+63	54	47
+66	43	48
+67	68	48
+69	32	48
+71	47	49
+72	60	50
+73	60	50
+76	45	54
+78	23	54
+79	49	54
+83	46	54
+84	21	54
+86	55	57
+87	22	57
+88	34	58
+89	50	58
+90	68	59
+df4=df3femal.count()
+df4
+Age                   55
+Annual Income (k$)    55
+dtype: int64
+Prob=df4/201
+prob
+0.2736318407960199
+dfmal =df.loc[(df['Gender']=='Female') & (df['Annual Income (k$)'] < 62.227273),['Age','Annual Income (k$)']]
+dfmal
+Age	Annual Income (k$)
+2	20	16
+3	23	16
+4	31	17
+5	22	17
+6	35	18
+7	23	18
+9	30	19
+11	35	19
+12	58	20
+13	24	20
+16	35	21
+19	35	23
+22	46	25
+24	54	28
+26	45	28
+28	40	29
+29	23	29
+31	21	30
+34	49	33
+35	21	33
+36	42	34
+37	30	34
+38	36	37
+39	20	37
+40	65	38
+43	31	39
+44	49	39
+45	24	39
+46	50	40
+47	27	40
+...	...	...
+50	49	42
+52	31	43
+54	50	43
+56	51	44
+58	27	46
+62	67	47
+63	54	47
+66	43	48
+67	68	48
+69	32	48
+71	47	49
+72	60	50
+73	60	50
+76	45	54
+78	23	54
+79	49	54
+83	46	54
+84	21	54
+86	55	57
+87	22	57
+88	34	58
+89	50	58
+90	68	59
+93	40	60
+94	32	60
+96	47	60
+97	27	60
+100	23	62
+101	49	62
+105	21	62
+62 rows × 2 columns
+
+df1=pd.melt(df,id_vars=['Gender','Age','Annual Income (k$)'],var_name='Spending Score (1-100)',value_name='Annual Income (k$)')
+df1
+Gender	Age	Annual Income (k$)	Spending Score (1-100)	Annual Income (k$)
+0	Male	19	1	CustomerID	1
+1	Male	21	2	CustomerID	2
+2	Female	20	3	CustomerID	3
+3	Female	23	4	CustomerID	4
+4	Female	31	5	CustomerID	5
+5	Female	22	6	CustomerID	6
+6	Female	35	7	CustomerID	7
+7	Female	23	8	CustomerID	8
+8	Male	64	9	CustomerID	9
+9	Female	30	10	CustomerID	10
+10	Male	67	11	CustomerID	11
+11	Female	35	12	CustomerID	12
+12	Female	58	13	CustomerID	13
+13	Female	24	14	CustomerID	14
+14	Male	37	15	CustomerID	15
+15	Male	22	16	CustomerID	16
+16	Female	35	17	CustomerID	17
+17	Male	20	18	CustomerID	18
+18	Male	52	19	CustomerID	19
+19	Female	35	20	CustomerID	20
+20	Male	35	21	CustomerID	21
+21	Male	25	22	CustomerID	22
+22	Female	46	23	CustomerID	23
+23	Male	31	24	CustomerID	24
+24	Female	54	25	CustomerID	25
+25	Male	29	26	CustomerID	26
+26	Female	45	27	CustomerID	27
+27	Male	35	28	CustomerID	28
+28	Female	40	29	CustomerID	29
+29	Female	23	30	CustomerID	30
+...	...	...	...	...	...
+370	Male	40	13	Spending Score (1-100)	13
+371	Male	28	75	Spending Score (1-100)	75
+372	Male	36	10	Spending Score (1-100)	10
+373	Male	36	92	Spending Score (1-100)	92
+374	Female	52	13	Spending Score (1-100)	13
+375	Female	30	86	Spending Score (1-100)	86
+376	Male	58	15	Spending Score (1-100)	15
+377	Male	27	69	Spending Score (1-100)	69
+378	Male	59	14	Spending Score (1-100)	14
+379	Male	35	90	Spending Score (1-100)	90
+380	Female	37	32	Spending Score (1-100)	32
+381	Female	32	86	Spending Score (1-100)	86
+382	Male	46	15	Spending Score (1-100)	15
+383	Female	29	88	Spending Score (1-100)	88
+384	Female	41	39	Spending Score (1-100)	39
+385	Male	30	97	Spending Score (1-100)	97
+386	Female	54	24	Spending Score (1-100)	24
+387	Male	28	68	Spending Score (1-100)	68
+388	Female	41	17	Spending Score (1-100)	17
+389	Female	36	85	Spending Score (1-100)	85
+390	Female	34	23	Spending Score (1-100)	23
+391	Female	32	69	Spending Score (1-100)	69
+392	Male	33	8	Spending Score (1-100)	8
+393	Female	38	91	Spending Score (1-100)	91
+394	Female	47	16	Spending Score (1-100)	16
+395	Female	35	79	Spending Score (1-100)	79
+396	Female	45	28	Spending Score (1-100)	28
+397	Male	32	74	Spending Score (1-100)	74
+398	Male	32	18	Spending Score (1-100)	18
+399	Male	30	83	Spending Score (1-100)	83
+400 rows × 5 columns
+
+dfmal.count()
+Age                   62
+Annual Income (k$)    62
+dtype: int64
+prob1=62/201
+prob1
+0.30845771144278605
+#prob of male is higher than prob of female income
+df2=df[(df['Annual Income (k$)']>56) & (df['Spending Score (1-100)'] > 60) & (df['Gender']=='Female')]  
+df2
+CustomerID	Gender	Age	Annual Income (k$)	Spending Score (1-100)
+125	126	Female	31	70	77
+133	134	Female	31	72	71
+135	136	Female	29	73	88
+139	140	Female	35	74	72
+143	144	Female	32	76	87
+147	148	Female	32	77	74
+153	154	Female	38	78	76
+155	156	Female	27	78	89
+157	158	Female	30	78	78
+159	160	Female	30	78	73
+161	162	Female	29	79	83
+163	164	Female	31	81	93
+165	166	Female	36	85	75
+167	168	Female	33	86	95
+175	176	Female	30	88	86
+181	182	Female	32	97	86
+183	184	Female	29	98	88
+189	190	Female	36	103	85
+191	192	Female	32	103	69
+193	194	Female	38	113	91
+195	196	Female	35	120	79
+df2['Spending Score (1-100)'].max()
+95
+m2=df[(df["Annual Income (k$)"]>=90) & (df["Gender"]=="Female")].count()
+m3=df[(df["Annual Income (k$)"]>=90) & (df["Gender"]=="Male")].count()
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+sns.lmplot(x='Annual Income (k$)',y='Age',data=df3femal)
+sns.lmplot(x='Annual Income (k$)',y='Age',data=dfmal)
+<seaborn.axisgrid.FacetGrid at 0xb0b4f28>
+
+
+sns.relplot(x='Annual Income (k$)',y='Spending Score (1-100)',data=df,kind="line")
+<seaborn.axisgrid.FacetGrid at 0xb5e4e80>
+
+sns.lmplot(x='Annual Income (k$)',y='Age',data=dfmal)
+<seaborn.axisgrid.FacetGrid at 0xd813a90>
+
+#we more focus on female targeting bcz the annual income is better than male
+ 
